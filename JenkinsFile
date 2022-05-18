@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('confirm version') {
             steps {
@@ -15,6 +14,16 @@ pipeline {
                 nodejs('Node17.9') {
                     sh 'npm install'
                 }
+            }
+        }
+        stage('Deploy to server') {
+            steps {
+                sshagent(credentials:['superuser-credential']) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no superuser@192.168.1.120 uptime "whoami"
+                    """
+                }
+                echo "Login success"
             }
         }
     }
