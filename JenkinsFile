@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sshagent(credentials:['superuser-credential']) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no superuser@192.168.1.120 uptime "whoami"
+                        docker build -t olarn/my-todoapp:latest .
                     """
                 }
                 echo "Login success"
