@@ -1,12 +1,11 @@
 pipeline {
     agent any
     stages {
-        stage('confirm version') {
+        stage('Deploy to server') {
             steps {
-                nodejs('Node18.1.0') {
-                    sh 'node -v'
-                    sh 'npm -v'
-                }
+                sh """
+                    docker ps -a
+                """
             }
         }
     }
