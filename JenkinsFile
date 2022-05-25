@@ -4,7 +4,7 @@ pipeline {
         stage('Deploy to server') {
             steps {
                 sh """
-                    docker ps -a
+                    docker build -t olarn/my-todoapp:latest .
                 """
             }
         }
